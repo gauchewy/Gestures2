@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ScratchView: View {
     @State var onFinish: Bool = false
+    @State var visible: Double = 0.0
+    var timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
+    
     var body: some View {
-        
-        VStack{
-            
-            ScratchCardView(cursorSize: 50, onFinish: $onFinish){
-                
-                VStack{
+        VStack {
+            ScratchCardView(cursorSize: 50, onFinish: $onFinish, visible: $visible) {
+                VStack {
                     Image("treehouse")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -24,10 +24,7 @@ struct ScratchView: View {
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.white)
-                
             } overlayView: {
-                
-                
                 Image("pattern")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -35,6 +32,13 @@ struct ScratchView: View {
         }
         .frame(maxWidth:.infinity, maxHeight: .infinity)
         .background(Color.black.ignoresSafeArea())
+        .onReceive(timer) { _ in
+            if visible < 1 {
+                withAnimation(.linear(duration: 0.01)) {
+                    visible += 0.01
+                }
+            }
+        }
     }
     
     
@@ -45,33 +49,29 @@ struct ScratchView: View {
     }
     
     struct ScratchCardView<Content: View,overlayImage:View>: View {
-        
         var content: Content
         var overlayView: overlayImage
-        
-        init(cursorSize: CGFloat, onFinish: Binding<Bool>, @ViewBuilder content: @escaping ()->Content, @ViewBuilder overlayView: @escaping()->overlayImage){
+        var cursorSize: CGFloat
+        @Binding var onFinish: Bool
+        @Binding var visible: Double
+        @State var startingPoint: CGPoint = .zero
+        @State var points: [CGPoint] = []
+
+        init(cursorSize: CGFloat, onFinish: Binding<Bool>, visible: Binding<Double>, @ViewBuilder content: @escaping () -> Content, @ViewBuilder overlayView: @escaping () -> overlayImage){
             self.content = content()
             self.overlayView = overlayView()
             self.cursorSize = cursorSize
             self._onFinish = onFinish
+            self._visible = visible
         }
         
-        @State var startingPoint: CGPoint = .zero
-        @State var points: [CGPoint] = []
-        
-        @GestureState var gestureLocation: CGPoint = .zero
-        
-        var cursorSize: CGFloat
-        @Binding var onFinish: Bool
-        
-        var body: some View{
-            
-            ZStack{
+        var body: some View {
+            ZStack {
                 overlayView
                 
                 content
                     .mask(ScratchMask(points: points, startingPoint: startingPoint)
-                        .stroke(style: StrokeStyle(lineWidth: cursorSize, lineCap: .round, lineJoin: .round)))
+                        .stroke(style: StrokeStyle(lineWidth: cursorSize, lineCap: .round, lineJoin: .round)).opacity(visible))
                     .gesture(
                        DragGesture()
                           .onChanged { value in
@@ -84,15 +84,16 @@ struct ScratchView: View {
                                       withAnimation {
                                           self.points = []
                                           self.startingPoint = .zero
+                                          visible = 0
                                       }
                                   }
                               }
                               self.points.append(value.location)
                           }
-                    )
+                     )
             }
-            .frame(width: 300, height: 300)
-            .cornerRadius(20)
+            .frame(width: 350, height: 300)
+            .cornerRadius(10)
         }
         
     }
@@ -101,6 +102,7 @@ struct ScratchView: View {
     struct ScratchMask: Shape {
         var points:[CGPoint]
         var startingPoint: CGPoint
+        
         
         func path(in rect: CGRect) -> Path{
             return Path{path in
