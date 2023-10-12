@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71330D412AD88453001E54BF /* OtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71330D402AD88453001E54BF /* OtherView.swift */; };
+		71330D432AD884FD001E54BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71330D422AD884FD001E54BF /* ViewController.swift */; };
+		71330D452AD88BA7001E54BF /* ScratchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71330D442AD88BA7001E54BF /* ScratchView.swift */; };
 		7176C2952AD7383400DF0901 /* Gestures2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7176C2942AD7383400DF0901 /* Gestures2App.swift */; };
 		7176C2972AD7383400DF0901 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7176C2962AD7383400DF0901 /* ContentView.swift */; };
 		7176C2992AD7383500DF0901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7176C2982AD7383500DF0901 /* Assets.xcassets */; };
@@ -14,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		71330D402AD88453001E54BF /* OtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherView.swift; sourceTree = "<group>"; };
+		71330D422AD884FD001E54BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		71330D442AD88BA7001E54BF /* ScratchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScratchView.swift; sourceTree = "<group>"; };
 		7176C2912AD7383400DF0901 /* Gestures2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gestures2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7176C2942AD7383400DF0901 /* Gestures2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gestures2App.swift; sourceTree = "<group>"; };
 		7176C2962AD7383400DF0901 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,7 +58,10 @@
 			isa = PBXGroup;
 			children = (
 				7176C2942AD7383400DF0901 /* Gestures2App.swift */,
+				71330D442AD88BA7001E54BF /* ScratchView.swift */,
 				7176C2962AD7383400DF0901 /* ContentView.swift */,
+				71330D402AD88453001E54BF /* OtherView.swift */,
+				71330D422AD884FD001E54BF /* ViewController.swift */,
 				7176C2982AD7383500DF0901 /* Assets.xcassets */,
 				7176C29A2AD7383500DF0901 /* Preview Content */,
 			);
@@ -138,7 +147,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7176C2972AD7383400DF0901 /* ContentView.swift in Sources */,
+				71330D452AD88BA7001E54BF /* ScratchView.swift in Sources */,
 				7176C2952AD7383400DF0901 /* Gestures2App.swift in Sources */,
+				71330D432AD884FD001E54BF /* ViewController.swift in Sources */,
+				71330D412AD88453001E54BF /* OtherView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +282,7 @@
 				DEVELOPMENT_TEAM = PB5KXTJ93P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This application needs camera usage";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +312,7 @@
 				DEVELOPMENT_TEAM = PB5KXTJ93P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This application needs camera usage";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

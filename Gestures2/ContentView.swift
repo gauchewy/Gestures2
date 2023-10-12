@@ -7,34 +7,42 @@
 
 import SwiftUI
 
+// Your Enumeration
+enum SelectedOption: String {
+    case handClasp = "Hand Clasp"
+    case binoculars = "Binoculars"
+    case wave = "Wave"
+    case interlace = "Interlace"
+    case iscratch = "iScratch"
+}
+
 struct ContentView: View {
     @State private var isSettingsViewShown = false
-    
+
     var body: some View {
-        
         NavigationView {
             VStack {
                 Spacer()
-                
+
                 Text("Welcome to Justure")
                     .font(.largeTitle)
                     .bold()
                     .padding()
-                
+
                 Spacer()
-                
+
                 ButtonGroupView()
-                
+
                 Spacer()
-                
-                NavigationLink(destination: OtherView()) {
-                    Text("Single Button")
+
+                NavigationLink(destination: ScratchView()) {
+                    Text("iScratch")
                         .font(.headline)
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
                         .foregroundColor(.white)
                         .background(Color.purple)
-                        .cornerRadius(20)
+                        .cornerRadius(10)
                 }.padding()
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -57,7 +65,7 @@ struct ContentView: View {
                 .sheet(isPresented: $isSettingsViewShown) {
                     SettingsView()
                 }
-                
+
                 Spacer()
             }
         }
@@ -65,19 +73,19 @@ struct ContentView: View {
 }
 
 struct ButtonGroupView: View {
-    let buttonLabels = ["Hand Clasp", "Binoculars", "Wave", "Interlace"]
-    
+    let actions: [SelectedOption] = [.handClasp, .binoculars, .wave, .interlace]
+
     var body: some View {
         VStack {
-            ForEach(buttonLabels, id: \.self) { label in
-                NavigationLink(destination: OtherView()) {
-                    Text(label)
+            ForEach(actions, id: \.self) { action in
+                NavigationLink(destination: OtherView(selection: action)) {
+                    Text(action.rawValue)
                         .font(.headline)
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
                         .foregroundColor(.white)
                         .background(Color.blue)
-                        .cornerRadius(40)
+                        .cornerRadius(10)
                 }.padding(.bottom)
             }
         }.padding()
@@ -88,12 +96,6 @@ struct SettingsView: View {
     var body: some View {
         Text("Settings")
             .font(.largeTitle)
-    }
-}
-
-struct OtherView: View {
-    var body: some View {
-        Text("Other View")
     }
 }
 
