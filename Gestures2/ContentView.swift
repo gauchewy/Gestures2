@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// Your Enumeration
 enum SelectedOption: String {
     case handClasp = "Hand Clasp"
     case binoculars = "Binoculars"
