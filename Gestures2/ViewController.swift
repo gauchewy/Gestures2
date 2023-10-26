@@ -20,7 +20,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     private var requests = [VNRequest]()
     private let videoDataOutput = AVCaptureVideoDataOutput()
     private let captureSession = AVCaptureSession()
-    
+    private var previousHandPoints = [CGPoint]()
     private lazy var previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
     
     private var previousIndexFingerCoordinates: [VNHumanHandPoseObservation.JointName: CGPoint] = [:]
@@ -66,15 +66,14 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                     }
                 }
             }
+            // other conditions
         }
         self.requests.append(handPoseRequest)
     }
     
     
-    // MARK: - Define Hand Gestures
-    
-    
-           
+    // MARK: - Define Hand Gestures Here
+  
 
     // MARK: - Setup Functions
     private func addCameraInput() {
@@ -109,17 +108,95 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
     }
     
+    private func printExtendedFingers(observation: VNHumanHandPoseObservation, wristLocation: CGPoint) {
+        // This dictionary stores the mapping from finger names to their corresponding points
+        let fingerJoints: [String: (tip: VNHumanHandPoseObservation.JointName, mcp: VNHumanHandPoseObservation.JointName)] = [
+            "Thumb": (tip: .thumbTip, mcp: .thumbIP),
+            "Index": (tip: .indexTip, mcp: .indexMCP),
+            "Middle": (tip: .middleTip, mcp: .middleMCP),
+            "Ring": (tip: .ringTip, mcp: .ringMCP),
+            "Little": (tip: .littleTip, mcp: .littleMCP)
+        ]
+
+        var output = ""
+        for (fingerName, jointNames) in fingerJoints {
+            guard let fingerPoints = try? observation.recognizedPoints(.all) else {
+                continue
+            }
+            let extended = isFingerExtended(
+                fingerTip: fingerPoints[jointNames.tip],
+                fingerPoints: fingerPoints,
+                mcpJoint: jointNames.mcp,
+                wristLocation: wristLocation
+            )
+            output += "\(fingerName): \(extended ? "Extended" : "Not Extended"), "
+        }
+        print(output)
+    }
+    
+    private func isFingerExtended(fingerTip: VNRecognizedPoint?,
+                                  fingerPoints: [VNHumanHandPoseObservation.JointName : VNRecognizedPoint],
+                                  mcpJoint: VNHumanHandPoseObservation.JointName,
+                                  wristLocation: CGPoint) -> Bool {
+        // Ensure the fingertip and the MCP joint points are recognized.
+        guard let fingerTip = fingerTip,
+              let mcpJointPoint = fingerPoints[mcpJoint] else {
+            return false
+        }
+
+        // Get the locations of the points.
+        let fingerPoint = fingerTip.location
+        let mcpPoint = mcpJointPoint.location
+        
+        // Determine vectors from the MCP joint to the fingertip and to the wrist.
+        let fingerVector = CGVector(dx: fingerPoint.x - mcpPoint.x, dy: fingerPoint.y - mcpPoint.y)
+        let wristVector = CGVector(dx: wristLocation.x - mcpPoint.x, dy: wristLocation.y - mcpPoint.y)
+        
+        // Calculate the cosine of the angle between the vectors.
+        let dotProduct = fingerVector.dx * wristVector.dx + fingerVector.dy * wristVector.dy
+        let magnitudeProduct = sqrt(fingerVector.dx * fingerVector.dx + fingerVector.dy * fingerVector.dy) * sqrt(wristVector.dx * wristVector.dx + wristVector.dy * wristVector.dy)
+        let cosineAngle = dotProduct / magnitudeProduct
+
+        // Consider the finger as extended if the angle between the vectors is less than 90 degrees.
+        if cosineAngle < cos(.pi / 2.0) {
+            return true
+        }
+        
+        return false
+    }
+    
+    
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-           guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-               return
-           }
-           let image = CIImage(cvImageBuffer: pixelBuffer)
-           
-           let handler = VNImageRequestHandler(ciImage: image, options: [:])
-           do {
-               try handler.perform(self.requests)
-           } catch {
-               print(error)
-           }
-       }
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        let image = CIImage(cvImageBuffer: pixelBuffer)
+        
+        let handler = VNImageRequestHandler(ciImage: image, options: [:])
+        do {
+            try handler.perform(self.requests)
+        } catch {
+            print(error)
+        }
+
+        // Perform the request
+        do {
+            try handler.perform(requests)
+            guard let results = requests.first?.results as? [VNHumanHandPoseObservation] else {
+                return
+            }
+
+            for observation in results {
+                // Get wrist location to pass into printExtendedFingers
+                let wristPoints = try observation.recognizedPoints(.all)
+                let wristLocation = wristPoints[.wrist]?.location
+                if let wristLocation = wristLocation {
+                    printExtendedFingers(observation: observation, wristLocation: wristLocation)
+                }
+            }
+        } catch {
+            print("Failed to perform Vision request: \(error)")
+        }
+    }
+
 }
