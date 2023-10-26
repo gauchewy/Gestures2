@@ -10,19 +10,21 @@ import SwiftUI
 struct CameraView: UIViewControllerRepresentable {
     typealias UIViewControllerType = ViewController
     var selection: SelectedOption
-
-    func makeUIViewController(context: Context) -> ViewController {
-        let viewController = ViewController(selectedOption: selection)
-        return viewController
-    }
+    @Binding var viewCleared: Bool
     
+    func makeUIViewController(context: Context) -> ViewController {
+          let viewController = ViewController(selectedOption: selection) {
+              self.viewCleared = $0
+          }
+          return viewController
+      }
     func updateUIViewController(_ uiViewController: ViewController, context: Context) {
     }
 }
+
 struct OtherView: View {
     let selection: SelectedOption
-    //manual setting for now
-    var viewCleared: Bool = false
+    @State var viewCleared: Bool = false
 
     var body: some View {
         
@@ -50,7 +52,7 @@ struct OtherView: View {
                     HStack {
                         Spacer()
 
-                        CameraView(selection: selection)
+                        CameraView(selection: selection, viewCleared: $viewCleared)
                             .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.height / 4)
                             .cornerRadius(20)
                             .padding()

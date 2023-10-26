@@ -4,18 +4,18 @@ import Vision
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
-    // added property
     var selectedOption: SelectedOption?
-    
-    // new initializer
-    init(selectedOption: SelectedOption) {
+    let complete: (Bool) -> Void
+
+    init(selectedOption: SelectedOption, completion: @escaping (Bool) -> Void) {
         self.selectedOption = selectedOption
+        self.complete = completion
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+          fatalError("init(coder:) has not been implemented")
+      }
     // MARK: - Variables
     private var requests = [VNRequest]()
     private let videoDataOutput = AVCaptureVideoDataOutput()
@@ -47,26 +47,41 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     private func setupVision() {
-        // Hand pose request
         let handPoseRequest = VNDetectHumanHandPoseRequest { [weak self] request, error in
             guard let observations = request.results as? [VNHumanHandPoseObservation] else {
                 return print("Error: \(error?.localizedDescription ?? "unknown error")")
             }
             
-            // Print the number of hands detected
-            print("Number of hands detected: \(observations.count)")
+            if self?.selectedOption == .wave {
+                if observations.count == 2 {
+                    DispatchQueue.main.async {
+
+                        self?.complete(true)
+                    }
+                }
+                else {
+                    DispatchQueue.main.async {
+                       
+                        self?.complete(false)
+                    }
+                }
+            }
         }
-        handPoseRequest.maximumHandCount = 2
         self.requests.append(handPoseRequest)
     }
+    
+    
+    // MARK: - Define Hand Gestures
+    
+    
+           
 
     // MARK: - Setup Functions
     private func addCameraInput() {
         guard let device = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInTrueDepthCamera, .builtInDualCamera, .builtInWideAngleCamera], mediaType: .video, position: .front).devices.first else {
             fatalError("No camera detected. Please use a real camera, not a simulator.")
         }
-        
-        // ⚠️ You should wrap this in a `do-catch` block, but this will be good enough for the demo.
+
         let cameraInput = try! AVCaptureDeviceInput(device: device)
         captureSession.addInput(cameraInput)
     }
@@ -95,16 +110,16 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-            return
-        }
-        let image = CIImage(cvImageBuffer: pixelBuffer)
-        
-        let handler = VNImageRequestHandler(ciImage: image, options: [:])
-        do {
-            try handler.perform(self.requests)
-        } catch {
-            print(error)
-        }
-    }
+           guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+               return
+           }
+           let image = CIImage(cvImageBuffer: pixelBuffer)
+           
+           let handler = VNImageRequestHandler(ciImage: image, options: [:])
+           do {
+               try handler.perform(self.requests)
+           } catch {
+               print(error)
+           }
+       }
 }
