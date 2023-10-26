@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Gestures2
-//
-//  Created by Qiwei on 10/12/23.
-//
-
-
 import UIKit
 import AVFoundation
 import Vision
@@ -13,8 +5,7 @@ import Vision
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     // MARK: - Variables
-    
-    private var numberOfHandsDetected = 0
+    private var requests = [VNRequest]()
     private let videoDataOutput = AVCaptureVideoDataOutput()
     private let captureSession = AVCaptureSession()
     
@@ -26,10 +17,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     override func viewDidLoad() {
        super.viewDidLoad()
-       
+       setupVision()
        addCameraInput()
        showCameraFeed()
-       
        getCameraFrames()
        
        DispatchQueue.global(qos: .userInitiated).async {
@@ -39,12 +29,24 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         previewLayer.frame = view.frame
     }
     
-    // MARK: - Helper Functions
-    
+    private func setupVision() {
+        // Hand pose request
+        let handPoseRequest = VNDetectHumanHandPoseRequest { [weak self] request, error in
+            guard let observations = request.results as? [VNHumanHandPoseObservation] else {
+                return print("Error: \(error?.localizedDescription ?? "unknown error")")
+            }
+            
+            // Print the number of hands detected
+            print("Number of hands detected: \(observations.count)")
+        }
+        handPoseRequest.maximumHandCount = 2
+        self.requests.append(handPoseRequest)
+    }
+
+    // MARK: - Setup Functions
     private func addCameraInput() {
         guard let device = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInTrueDepthCamera, .builtInDualCamera, .builtInWideAngleCamera], mediaType: .video, position: .front).devices.first else {
             fatalError("No camera detected. Please use a real camera, not a simulator.")
@@ -77,5 +79,18 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         connection.videoOrientation = .portrait
         
     }
-}
     
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        let image = CIImage(cvImageBuffer: pixelBuffer)
+        
+        let handler = VNImageRequestHandler(ciImage: image, options: [:])
+        do {
+            try handler.perform(self.requests)
+        } catch {
+            print(error)
+        }
+    }
+}
