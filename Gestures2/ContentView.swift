@@ -83,7 +83,7 @@ struct ButtonGroupView: View {
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
                         .foregroundColor(.white)
-                        .background(Color.blue)
+                        .background(Color.purple)
                         .cornerRadius(10)
                 }.padding(.bottom)
             }
