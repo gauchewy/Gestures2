@@ -52,21 +52,131 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 return print("Error: \(error?.localizedDescription ?? "unknown error")")
             }
             
+            // WAVE
             if self?.selectedOption == .wave {
                 if observations.count == 2 {
                     DispatchQueue.main.async {
-
+                        
                         self?.complete(true)
                     }
                 }
                 else {
                     DispatchQueue.main.async {
-                       
+                        
                         self?.complete(false)
                     }
                 }
             }
-            // other conditions
+            
+            // BINOCULARS
+            if self?.selectedOption == .binoculars {
+                if observations.count == 2 {
+                    for observation in observations {
+                        guard let thumbTip = try? observation.recognizedPoint(.thumbTip),
+                              let indexTip = try? observation.recognizedPoint(.indexTip) else {
+                            continue
+                        }
+                        
+                        // Calculate the distance between the middle finger PIP of both hands
+                        let distance = sqrt(pow(indexTip.location.x - thumbTip.location.x, 2) + pow(indexTip.location.y - thumbTip.location.y, 2))
+                        
+                        // If the distance is smaller than threshold, it indicates interlaced hands
+                        // YOUR_THRESHOLD_FOR_INTERLACE is a specified threshold that you could determine through experimentation
+                        if distance < 0.1 {
+                            DispatchQueue.main.async {
+                                self?.complete(true)
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                self?.complete(false)
+                            }
+                        }
+                    }
+                    
+                    
+                }
+                else {
+                    
+                    DispatchQueue.main.async {
+                        self?.complete(false)
+                    }
+                }
+            }
+                        
+            
+            // HAND CLASP
+            if self?.selectedOption == .handClasp {
+                
+                for observation in observations {
+                    guard let thumbTip = try? observation.recognizedPoint(.thumbTip),
+                          let indexTip = try? observation.recognizedPoint(.indexTip),
+                          let middleTip = try? observation.recognizedPoint(.middleTip),
+                          let ringTip = try? observation.recognizedPoint(.ringTip),
+                          let littleTip = try? observation.recognizedPoint(.littleTip) else {
+                        continue
+                    }
+                    
+                    // Distances calculated directly
+                    let thumbIndexDist = sqrt(pow(indexTip.location.x - thumbTip.location.x, 2) + pow(indexTip.location.y - thumbTip.location.y, 2))
+                    let thumbMiddleDist = sqrt(pow(middleTip.location.x - thumbTip.location.x, 2) + pow(middleTip.location.y - thumbTip.location.y, 2))
+                    let thumbRingDist = sqrt(pow(ringTip.location.x - thumbTip.location.x, 2) + pow(ringTip.location.y - thumbTip.location.y, 2))
+                    let thumbLittleDist = sqrt(pow(littleTip.location.x - thumbTip.location.x, 2) + pow(littleTip.location.y - thumbTip.location.y, 2))
+                    
+                    // Check if all distances are under threshold
+                    let distances = [thumbIndexDist, thumbMiddleDist, thumbRingDist, thumbLittleDist]
+                    if distances.allSatisfy({ $0 < 0.2 }) {
+                        DispatchQueue.main.async {
+                            self?.complete(true)
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self?.complete(false)
+                        }
+                    }
+                }
+            }
+        
+   
+                
+
+            // INTERLACE
+            if self?.selectedOption == .interlace {
+                if observations.count == 2 {
+                    let knuckles: [VNHumanHandPoseObservation.JointName] = [
+                        .thumbIP, .indexPIP, .middlePIP, .ringPIP, .littlePIP
+                    ]
+                    
+                    // Check for valid knuckle points for each hand
+                    guard let points1 = try? observations[0].recognizedPoints(.all),
+                          let points2 = try? observations[1].recognizedPoints(.all) else {
+                        DispatchQueue.main.async {
+                            self?.complete(false)
+                        }
+                        return
+                    }
+
+                    // Check if most of the knuckles of two hands are close to each other
+                    var closeKnuckles = 0
+                    for knuckle in knuckles {
+                        guard let point1 = points1[knuckle], let point2 = points2[knuckle] else { continue }
+                            
+                        let distance = sqrt(pow(point1.location.x - point2.location.x, 2)
+                                          + pow(point1.location.y - point2.location.y, 2))
+                            
+                        if distance < 0.4 { // threshold is a predefined distance
+                            closeKnuckles += 1
+                        }
+                    }
+                    DispatchQueue.main.async{
+                        self?.complete(closeKnuckles >= 4) // expect at least 4 knuckles to be close
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.complete(false)
+                    }
+                }
+            }
+          
         }
         self.requests.append(handPoseRequest)
     }
