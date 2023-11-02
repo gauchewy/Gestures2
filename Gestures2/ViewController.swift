@@ -71,32 +71,52 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             // BINOCULARS
             if self?.selectedOption == .binoculars {
                 if observations.count == 2 {
+                    // thumbTip array so we can calculate the distance between the two hands
+                    var thumbTipLocations = [CGPoint]()
                     for observation in observations {
                         guard let thumbTip = try? observation.recognizedPoint(.thumbTip),
-                              let indexTip = try? observation.recognizedPoint(.indexTip) else {
+                              let indexTip = try? observation.recognizedPoint(.indexTip),
+                              let middleTip = try? observation.recognizedPoint(.middleTip),
+                              let ringTip = try? observation.recognizedPoint(.ringTip),
+                              let littleTip = try? observation.recognizedPoint(.littleTip) else {
                             continue
                         }
+                        thumbTipLocations.append(thumbTip.location)
                         
-                        // Calculate the distance between the middle finger PIP of both hands
-                        let distance = sqrt(pow(indexTip.location.x - thumbTip.location.x, 2) + pow(indexTip.location.y - thumbTip.location.y, 2))
+                        // Calculate the distance between the thumb tip and index tip to check for binoculars pose
+                        let thumbIndexDistance = sqrt(pow(indexTip.location.x - thumbTip.location.x, 2) + pow(indexTip.location.y - thumbTip.location.y, 2))
+                        let thumbMiddleDist = sqrt(pow(middleTip.location.x - thumbTip.location.x, 2) + pow(middleTip.location.y - thumbTip.location.y, 2))
+                        let thumbRingDist = sqrt(pow(ringTip.location.x - thumbTip.location.x, 2) + pow(ringTip.location.y - thumbTip.location.y, 2))
+                        let thumbLittleDist = sqrt(pow(littleTip.location.x - thumbTip.location.x, 2) + pow(littleTip.location.y - thumbTip.location.y, 2))
                         
-                        // If the distance is smaller than threshold, it indicates interlaced hands
-                        // YOUR_THRESHOLD_FOR_INTERLACE is a specified threshold that you could determine through experimentation
-                        if distance < 0.1 {
-                            DispatchQueue.main.async {
-                                self?.complete(true)
-                            }
+                        // If fingers are in binoculars pose, keep going
+                        if thumbIndexDistance < 0.05 && thumbMiddleDist < 0.1 && thumbRingDist < 0.1 && thumbLittleDist < 0.2 {
+                            continue
                         } else {
                             DispatchQueue.main.async {
                                 self?.complete(false)
                             }
                         }
                     }
-                    
-                    
+                        
+                        // Calculate the distance between the thumbs
+                        let thumbTipDistance = sqrt(pow(thumbTipLocations[0].x - thumbTipLocations[1].x, 2) + pow(thumbTipLocations[0].y - thumbTipLocations[1].y, 2))
+                        
+                        
+                        // If two hands are close together, complete
+                        if thumbTipDistance < 0.05 {
+                            DispatchQueue.main.async {
+                                self?.complete(true)
+                            }
+                            
+                        } else {
+                            DispatchQueue.main.async {
+                                self?.complete(false)
+                            }
+                        }
                 }
+                // two hands not detected
                 else {
-                    
                     DispatchQueue.main.async {
                         self?.complete(false)
                     }
