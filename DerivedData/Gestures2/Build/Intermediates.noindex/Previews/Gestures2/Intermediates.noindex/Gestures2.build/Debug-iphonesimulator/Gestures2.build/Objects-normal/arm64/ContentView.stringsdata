@@ -1,0 +1,44 @@
+{
+  "source": "/Users/cristiisaula/Desktop/Gestures2/Gestures2/ContentView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Welcome to Justure"
+      },
+      {
+        "comment": "",
+        "key": "iScratch"
+      },
+      {
+        "comment": "",
+        "key": "Justure"
+      },
+      {
+        "comment": "",
+        "key": "Settings"
+      },
+      {
+        "comment": "",
+        "key": "Buffer time"
+      },
+      {
+        "comment": "",
+        "key": "Timer clock"
+      },
+      {
+        "comment": "",
+        "key": "Enter time in seconds:"
+      },
+      {
+        "comment": "",
+        "key": "Enter time in minutes:"
+      },
+      {
+        "comment": "",
+        "key": "Upload photo"
+      }
+    ]
+  },
+  "version": 1
+}

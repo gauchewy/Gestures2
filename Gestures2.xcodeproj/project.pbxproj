@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		144B80542AF3618800FD1664 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B80532AF3618800FD1664 /* ImagePicker.swift */; };
 		7176C2952AD7383400DF0901 /* Gestures2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7176C2942AD7383400DF0901 /* Gestures2App.swift */; };
 		7176C2972AD7383400DF0901 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7176C2962AD7383400DF0901 /* ContentView.swift */; };
 		7176C2992AD7383500DF0901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7176C2982AD7383500DF0901 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		144B80532AF3618800FD1664 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7176C2912AD7383400DF0901 /* Gestures2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gestures2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7176C2942AD7383400DF0901 /* Gestures2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gestures2App.swift; sourceTree = "<group>"; };
 		7176C2962AD7383400DF0901 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				71A54C292AEA04C500355FB0 /* OtherView.swift */,
 				71A54C2B2AEA04D800355FB0 /* ViewController.swift */,
 				7176C2962AD7383400DF0901 /* ContentView.swift */,
+				144B80532AF3618800FD1664 /* ImagePicker.swift */,
 				7176C2982AD7383500DF0901 /* Assets.xcassets */,
 				7176C29A2AD7383500DF0901 /* Preview Content */,
 			);
@@ -149,6 +152,7 @@
 				7176C2972AD7383400DF0901 /* ContentView.swift in Sources */,
 				71A54C2E2AEA04E700355FB0 /* ScratchView.swift in Sources */,
 				7176C2952AD7383400DF0901 /* Gestures2App.swift in Sources */,
+				144B80542AF3618800FD1664 /* ImagePicker.swift in Sources */,
 				71A54C2C2AEA04D800355FB0 /* ViewController.swift in Sources */,
 				71A54C2A2AEA04C500355FB0 /* OtherView.swift in Sources */,
 			);

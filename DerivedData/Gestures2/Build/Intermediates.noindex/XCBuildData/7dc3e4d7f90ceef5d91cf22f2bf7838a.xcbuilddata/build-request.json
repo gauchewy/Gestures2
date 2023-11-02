@@ -1,0 +1,105 @@
+{
+  "buildCommand" : {
+    "command" : "preview",
+    "style" : "dynamicReplacement"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "62ca76c441354a622cb348e986405fc3b573cb2c0ee6fd6661cd81a2bbef4df5",
+      "parameters" : {
+        "action" : "build",
+        "activeArchitecture" : "arm64",
+        "activeRunDestination" : {
+          "disableOnlyActiveArch" : false,
+          "platform" : "iphonesimulator",
+          "sdk" : "iphonesimulator17.0",
+          "sdkVariant" : "iphonesimulator",
+          "supportedArchitectures" : [
+            "arm64",
+            "x86_64"
+          ],
+          "targetArchitecture" : "arm64"
+        },
+        "arenaInfo" : {
+          "buildIntermediatesPath" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex",
+          "buildProductsPath" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Products",
+          "derivedDataPath" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData",
+          "indexDataStoreFolderPath" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Index.noindex/DataStore",
+          "indexEnableDataStore" : true,
+          "indexPCHPath" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Index.noindex/PrecompiledHeaders",
+          "pchPath" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/PrecompiledHeaders"
+        },
+        "configurationName" : "Debug",
+        "overrides" : {
+          "synthesized" : {
+            "table" : {
+              "ASSETCATALOG_FILTER_FOR_DEVICE_MODEL" : "",
+              "ASSETCATALOG_FILTER_FOR_DEVICE_OS_VERSION" : "",
+              "ASSETCATALOG_FILTER_FOR_THINNING_DEVICE_CONFIGURATION" : "iPhone16,1",
+              "BUILD_ACTIVE_RESOURCES_ONLY" : "YES",
+              "DSTROOT" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/ReleaseProducts",
+              "ENABLE_ONLY_ACTIVE_RESOURCES" : "NO",
+              "ENABLE_PREVIEWS" : "YES",
+              "OBJROOT" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex",
+              "SYMROOT" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Products",
+              "TARGET_DEVICE_IDENTIFIER" : "C1C15C1B-C762-405D-9547-4ED1F034A7D6",
+              "TARGET_DEVICE_MODEL" : "iPhone16,1",
+              "TARGET_DEVICE_OS_VERSION" : "17.0.1",
+              "TARGET_DEVICE_PLATFORM_NAME" : "iphonesimulator"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "containerPath" : "/Users/cristiisaula/Desktop/Gestures2/Gestures2.xcodeproj",
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "iphonesimulator",
+      "sdk" : "iphonesimulator17.0",
+      "sdkVariant" : "iphonesimulator",
+      "supportedArchitectures" : [
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Products",
+      "derivedDataPath" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ASSETCATALOG_FILTER_FOR_DEVICE_MODEL" : "iPhone16,1",
+          "ASSETCATALOG_FILTER_FOR_DEVICE_OS_VERSION" : "17.0.1",
+          "ASSETCATALOG_FILTER_FOR_THINNING_DEVICE_CONFIGURATION" : "iPhone16,1",
+          "BUILD_ACTIVE_RESOURCES_ONLY" : "YES",
+          "ENABLE_XOJIT_PREVIEWS" : "NO",
+          "TARGET_DEVICE_IDENTIFIER" : "C1C15C1B-C762-405D-9547-4ED1F034A7D6",
+          "TARGET_DEVICE_MODEL" : "iPhone16,1",
+          "TARGET_DEVICE_OS_VERSION" : "17.0.1",
+          "TARGET_DEVICE_PLATFORM_NAME" : "iphonesimulator"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

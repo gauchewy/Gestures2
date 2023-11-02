@@ -1,0 +1,68 @@
+{
+  "" : {
+    "diagnostics" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/Gestures2-master.dia",
+    "emit-module-dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/Gestures2-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/Gestures2-master-emit-module.dia",
+    "swift-dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/Gestures2-master.swiftdeps"
+  },
+  "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/cristiisaula/Desktop/Gestures2/Gestures2/ContentView.swift" : {
+    "const-values" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/cristiisaula/Desktop/Gestures2/Gestures2/Gestures2App.swift" : {
+    "const-values" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/Gestures2App.swiftconstvalues",
+    "dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/Gestures2App.d",
+    "diagnostics" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/Gestures2App.dia",
+    "index-unit-output-path" : "/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/Gestures2App.o",
+    "llvm-bc" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/Gestures2App.bc",
+    "object" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/Gestures2App.o",
+    "swift-dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/Gestures2App.swiftdeps",
+    "swiftmodule" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/Gestures2App~partial.swiftmodule"
+  },
+  "/Users/cristiisaula/Desktop/Gestures2/Gestures2/OtherView.swift" : {
+    "const-values" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/OtherView.swiftconstvalues",
+    "dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/OtherView.d",
+    "diagnostics" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/OtherView.dia",
+    "index-unit-output-path" : "/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/OtherView.o",
+    "llvm-bc" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/OtherView.bc",
+    "object" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/OtherView.o",
+    "swift-dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/OtherView.swiftdeps",
+    "swiftmodule" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/OtherView~partial.swiftmodule"
+  },
+  "/Users/cristiisaula/Desktop/Gestures2/Gestures2/ScratchView.swift" : {
+    "const-values" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ScratchView.swiftconstvalues",
+    "dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ScratchView.d",
+    "diagnostics" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ScratchView.dia",
+    "index-unit-output-path" : "/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ScratchView.o",
+    "llvm-bc" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ScratchView.bc",
+    "object" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ScratchView.o",
+    "swift-dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ScratchView.swiftdeps",
+    "swiftmodule" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ScratchView~partial.swiftmodule"
+  },
+  "/Users/cristiisaula/Desktop/Gestures2/Gestures2/ViewController.swift" : {
+    "const-values" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ViewController.swiftconstvalues",
+    "dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ViewController.d",
+    "diagnostics" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ViewController.dia",
+    "index-unit-output-path" : "/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ViewController.o",
+    "llvm-bc" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ViewController.bc",
+    "object" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ViewController.o",
+    "swift-dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ViewController.swiftdeps",
+    "swiftmodule" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ViewController~partial.swiftmodule"
+  }
+}

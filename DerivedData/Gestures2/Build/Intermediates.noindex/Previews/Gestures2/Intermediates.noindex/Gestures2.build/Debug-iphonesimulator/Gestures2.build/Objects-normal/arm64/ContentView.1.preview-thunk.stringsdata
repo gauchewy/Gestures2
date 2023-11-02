@@ -1,0 +1,44 @@
+{
+  "source": "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Build/Intermediates.noindex/Previews/Gestures2/Intermediates.noindex/Gestures2.build/Debug-iphonesimulator/Gestures2.build/Objects-normal/arm64/ContentView.1.preview-thunk.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Settings"
+      },
+      {
+        "comment": "",
+        "key": "Buffer time"
+      },
+      {
+        "comment": "",
+        "key": "Enter time in seconds:"
+      },
+      {
+        "comment": "",
+        "key": "Timer clock"
+      },
+      {
+        "comment": "",
+        "key": "Enter time in minutes:"
+      },
+      {
+        "comment": "",
+        "key": "Upload photo"
+      },
+      {
+        "comment": "",
+        "key": "Welcome to Justure"
+      },
+      {
+        "comment": "",
+        "key": "iScratch"
+      },
+      {
+        "comment": "",
+        "key": "Justure"
+      }
+    ]
+  },
+  "version": 1
+}

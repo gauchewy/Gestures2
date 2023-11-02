@@ -83,7 +83,7 @@ struct ButtonGroupView: View {
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
                         .foregroundColor(.white)
-                        .background(Color.purple)
+                        .background(Color.blue)
                         .cornerRadius(10)
                 }.padding(.bottom)
             }
@@ -92,9 +92,70 @@ struct ButtonGroupView: View {
 }
 
 struct SettingsView: View {
+    enum FocusedField {
+        case int
+    }
+    @State var isPickerShowing = false
+    @State var selectedImage: UIImage?
+    @State private var bufferTimeAmnt = ""
+    @State private var timerClockAmnt = ""
+    @FocusState private var focusedField: FocusedField?
+    
     var body: some View {
-        Text("Settings")
-            .font(.largeTitle)
+        VStack {
+            Spacer()
+            Text("Settings")
+                .font(.title)
+                Spacer()
+            
+            HStack {
+                if selectedImage != nil {
+                    Image(uiImage: selectedImage!)
+                        .resizable()
+                        .frame(width: 200, height: 200)
+                }
+                
+                Button {
+                    // show image picker
+                    isPickerShowing = true
+                    
+                } label: {
+                    Text("Upload photo")
+                }
+                
+                .sheet(isPresented: $isPickerShowing, onDismiss: nil) {
+                    // Image picker
+                    ImagePicker(selectedImage: $selectedImage, isPickerShowing: $isPickerShowing)
+                }
+            }
+            Text("Buffer time")
+                .font(.title3)
+            TextField("Enter time in seconds:", text: $bufferTimeAmnt)
+                .focused($focusedField, equals: .int)
+                .keyboardType(.numberPad)
+            
+            
+            Text("Timer clock")
+                .font(.title3)
+            TextField("Enter time in minutes:", text: $timerClockAmnt)
+                .keyboardType(.numberPad)
+                .focused($focusedField, equals: .int)
+            Spacer()
+        }
+        .textFieldStyle(.roundedBorder)
+        .frame(width: 200)
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                Spacer()
+            }
+            ToolbarItem(placement: .keyboard) {
+                Button {
+                    focusedField = nil
+                } label: {
+                    Image(systemName: "keyboard.")
+                }
+            }
+        }
     }
 }
 

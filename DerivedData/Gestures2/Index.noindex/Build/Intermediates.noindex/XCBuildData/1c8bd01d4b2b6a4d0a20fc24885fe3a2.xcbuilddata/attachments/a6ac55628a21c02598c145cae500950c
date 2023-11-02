@@ -1,0 +1,30 @@
+{
+  "" : {
+    "dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Index.noindex/Build/Intermediates.noindex/Gestures2.build/Debug-iphoneos/Gestures2.build/Objects-normal/arm64/Gestures2-master.d",
+    "diagnostics" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Index.noindex/Build/Intermediates.noindex/Gestures2.build/Debug-iphoneos/Gestures2.build/Objects-normal/arm64/Gestures2-master.dia",
+    "emit-module-dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Index.noindex/Build/Intermediates.noindex/Gestures2.build/Debug-iphoneos/Gestures2.build/Objects-normal/arm64/Gestures2-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Index.noindex/Build/Intermediates.noindex/Gestures2.build/Debug-iphoneos/Gestures2.build/Objects-normal/arm64/Gestures2-master-emit-module.dia",
+    "swift-dependencies" : "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Index.noindex/Build/Intermediates.noindex/Gestures2.build/Debug-iphoneos/Gestures2.build/Objects-normal/arm64/Gestures2-master.swiftdeps"
+  },
+  "/Users/cristiisaula/Desktop/Gestures2/DerivedData/Gestures2/Index.noindex/Build/Intermediates.noindex/Gestures2.build/Debug-iphoneos/Gestures2.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+
+  },
+  "/Users/cristiisaula/Desktop/Gestures2/Gestures2/ContentView.swift" : {
+
+  },
+  "/Users/cristiisaula/Desktop/Gestures2/Gestures2/Gestures2App.swift" : {
+
+  },
+  "/Users/cristiisaula/Desktop/Gestures2/Gestures2/ImagePicker.swift" : {
+
+  },
+  "/Users/cristiisaula/Desktop/Gestures2/Gestures2/OtherView.swift" : {
+
+  },
+  "/Users/cristiisaula/Desktop/Gestures2/Gestures2/ScratchView.swift" : {
+
+  },
+  "/Users/cristiisaula/Desktop/Gestures2/Gestures2/ViewController.swift" : {
+
+  }
+}
