@@ -24,6 +24,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     private lazy var previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
     
     private var previousIndexFingerCoordinates: [VNHumanHandPoseObservation.JointName: CGPoint] = [:]
+    private var previousWristLocations: [CGPoint] = []
     
     // MARK: - Lifecycle
     
@@ -52,23 +53,58 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 return print("Error: \(error?.localizedDescription ?? "unknown error")")
             }
             
-            // WAVE
+            // WAVE -- WORKS
             if self?.selectedOption == .wave {
                 if observations.count == 2 {
-                    DispatchQueue.main.async {
-                        
-                        self?.complete(true)
+                    var bothHandsExtended = true
+                    for observation in observations {
+
+                        guard let handExtended = self?.allFingersExtended(observation: observation) else {
+                            bothHandsExtended = false
+                            break
+                        }
+
+                        if !(handExtended) {
+                            bothHandsExtended = false
+                            break
+                        }
+
+                        guard let wrist = try? observation.recognizedPoints(.all)[.wrist] else {
+                            DispatchQueue.main.async {
+                                self?.complete(false)
+                            }
+                            return
+                        }
+                            
+                        let wristLocation = wrist.location
+                            
+                        if let previousWristLocation = self?.previousWristLocations.last {
+                            let threshold: CGFloat = 0.3
+                            let distance = sqrt(pow(wristLocation.x - previousWristLocation.x, 2) + pow(wristLocation.y - previousWristLocation.y, 2))
+                            if distance < threshold {
+                                DispatchQueue.main.async {
+                                    self?.complete(false)
+                                }
+                                return
+                            }
+                        }
+                            
+                        self?.previousWristLocations.append(wristLocation)
+                        print("wrist location:+ \(wristLocation)")
                     }
-                }
-                else {
+
                     DispatchQueue.main.async {
-                        
+                        // If all fingers are extended in both hands, then the user is performing the 'wave' gesture
+                        self?.complete(bothHandsExtended)
+                    }
+                } else {
+                    DispatchQueue.main.async {
                         self?.complete(false)
                     }
                 }
             }
             
-            // BINOCULARS
+            // BINOCULARS -- WORKS
             if self?.selectedOption == .binoculars {
                 if observations.count == 2 {
                     // thumbTip array so we can calculate the distance between the two hands
@@ -208,7 +244,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     // MARK: - Setup Functions
     private func addCameraInput() {
         guard let device = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInTrueDepthCamera, .builtInDualCamera, .builtInWideAngleCamera], mediaType: .video, position: .front).devices.first else {
-            fatalError("No camera detected. Please use a real camera, not a simulator.")
+            fatalError("No camera detected. Please use a real camera, not a siwewmulator.")
         }
 
         let cameraInput = try! AVCaptureDeviceInput(device: device)
@@ -238,6 +274,28 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
     }
     
+    // repurposed method from gestures1
+    // returns true if all fingers are extended
+    private func allFingersExtended(observation: VNHumanHandPoseObservation) -> Bool? {
+        guard let thumbPoints = try? observation.recognizedPoints(.thumb),
+              let indexPoints = try? observation.recognizedPoints(.indexFinger),
+              let middlePoints = try? observation.recognizedPoints(.middleFinger),
+              let ringPoints = try? observation.recognizedPoints(.ringFinger),
+              let littlePoints = try? observation.recognizedPoints(.littleFinger),
+              let wristPoints = try? observation.recognizedPoints(.all),
+              let wrist = wristPoints[.wrist] else {
+            return nil
+        }
+
+        let thumbExtended = isFingerExtended(fingerTip: thumbPoints[.thumbTip], fingerPoints: thumbPoints, mcpJoint: .thumbMP, wristLocation: wrist.location)
+        let indexExtended = isFingerExtended(fingerTip: indexPoints[.indexTip], fingerPoints: indexPoints, mcpJoint: .indexMCP, wristLocation: wrist.location)
+        let middleExtended = isFingerExtended(fingerTip: middlePoints[.middleTip], fingerPoints: middlePoints, mcpJoint: .middleMCP, wristLocation: wrist.location)
+        let ringExtended = isFingerExtended(fingerTip: ringPoints[.ringTip], fingerPoints: ringPoints, mcpJoint: .ringMCP, wristLocation: wrist.location)
+        let littleExtended = isFingerExtended(fingerTip: littlePoints[.littleTip], fingerPoints: littlePoints, mcpJoint: .littleMCP, wristLocation: wrist.location)
+        
+        return thumbExtended && indexExtended && middleExtended && ringExtended && littleExtended
+    }
+    
     private func printExtendedFingers(observation: VNHumanHandPoseObservation, wristLocation: CGPoint) {
         // This dictionary stores the mapping from finger names to their corresponding points
         let fingerJoints: [String: (tip: VNHumanHandPoseObservation.JointName, mcp: VNHumanHandPoseObservation.JointName)] = [
@@ -261,7 +319,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             )
             output += "\(fingerName): \(extended ? "Extended" : "Not Extended"), "
         }
-        print(output)
+        //print(output)
     }
     
     private func isFingerExtended(fingerTip: VNRecognizedPoint?,
