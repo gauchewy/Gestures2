@@ -79,18 +79,20 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                         let wristLocation = wrist.location
                             
                         if let previousWristLocation = self?.previousWristLocations.last {
-                            let threshold: CGFloat = 0.3
+                            let threshold: CGFloat = 0.25
                             let distance = sqrt(pow(wristLocation.x - previousWristLocation.x, 2) + pow(wristLocation.y - previousWristLocation.y, 2))
                             if distance < threshold {
+                                print("UNDER THRESHOLD:+ \(distance)")
                                 DispatchQueue.main.async {
                                     self?.complete(false)
                                 }
                                 return
                             }
+                            print("OVER THRESHOLD:+ \(distance)")
                         }
                             
                         self?.previousWristLocations.append(wristLocation)
-                        print("wrist location:+ \(wristLocation)")
+                        //print("wrist location:+ \(wristLocation)")
                     }
 
                     DispatchQueue.main.async {
@@ -126,7 +128,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                         let thumbLittleDist = sqrt(pow(littleTip.location.x - thumbTip.location.x, 2) + pow(littleTip.location.y - thumbTip.location.y, 2))
                         
                         // If fingers are in binoculars pose, keep going
-                        if thumbIndexDistance < 0.05 && thumbMiddleDist < 0.1 && thumbRingDist < 0.1 && thumbLittleDist < 0.2 {
+                        if thumbIndexDistance < 0.05 && thumbMiddleDist < 0.1 && thumbRingDist < 0.1 && thumbLittleDist < 0.1 {
                             continue
                         } else {
                             DispatchQueue.main.async {
