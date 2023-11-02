@@ -82,13 +82,13 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                             let threshold: CGFloat = 0.25
                             let distance = sqrt(pow(wristLocation.x - previousWristLocation.x, 2) + pow(wristLocation.y - previousWristLocation.y, 2))
                             if distance < threshold {
-                                print("UNDER THRESHOLD:+ \(distance)")
+                                print("UNDER THRESHOLD DISTANCE:+ \(distance)")
                                 DispatchQueue.main.async {
                                     self?.complete(false)
                                 }
                                 return
                             }
-                            print("OVER THRESHOLD:+ \(distance)")
+                            print("OVER THRESHOLD DISTANCE:+ \(distance)")
                         }
                             
                         self?.previousWristLocations.append(wristLocation)
