@@ -164,32 +164,52 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             
             // HAND CLASP
             if self?.selectedOption == .handClasp {
-                
-                for observation in observations {
-                    guard let thumbTip = try? observation.recognizedPoint(.thumbTip),
-                          let indexTip = try? observation.recognizedPoint(.indexTip),
-                          let middleTip = try? observation.recognizedPoint(.middleTip),
-                          let ringTip = try? observation.recognizedPoint(.ringTip),
-                          let littleTip = try? observation.recognizedPoint(.littleTip) else {
-                        continue
+                if observations.count == 2 {
+                    var bothHandsClosed = true
+                    var wristLocations = [CGPoint]()
+                    
+                    // for each hand
+                    for observation in observations {
+                        
+                        // Check all fingers are not extended
+                        guard let handClosed = self?.allFingersExtended(observation: observation), !handClosed else {
+                            bothHandsClosed = false
+                            break
+                        }
+
+                        // Get the wrist location to compare proximity of hands later on
+                        guard let wrist = try? observation.recognizedPoints(.all)[.wrist] else {
+                            DispatchQueue.main.async {
+                                self?.complete(false)
+                            }
+                            return
+                        }
+                        
+                        wristLocations.append(wrist.location)
                     }
-                    
-                    // Distances calculated directly
-                    let thumbIndexDist = sqrt(pow(indexTip.location.x - thumbTip.location.x, 2) + pow(indexTip.location.y - thumbTip.location.y, 2))
-                    let thumbMiddleDist = sqrt(pow(middleTip.location.x - thumbTip.location.x, 2) + pow(middleTip.location.y - thumbTip.location.y, 2))
-                    let thumbRingDist = sqrt(pow(ringTip.location.x - thumbTip.location.x, 2) + pow(ringTip.location.y - thumbTip.location.y, 2))
-                    let thumbLittleDist = sqrt(pow(littleTip.location.x - thumbTip.location.x, 2) + pow(littleTip.location.y - thumbTip.location.y, 2))
-                    
-                    // Check if all distances are under threshold
-                    let distances = [thumbIndexDist, thumbMiddleDist, thumbRingDist, thumbLittleDist]
-                    if distances.allSatisfy({ $0 < 0.2 }) {
-                        DispatchQueue.main.async {
-                            self?.complete(true)
+                                    
+                    if bothHandsClosed {
+                        // Calculate the distance between the wrists
+                        let wristDistance = sqrt(pow(wristLocations[0].x - wristLocations[1].x, 2) + pow(wristLocations[0].y - wristLocations[1].y, 2))
+                        
+                        
+                        if wristDistance < 0.2 {
+                            DispatchQueue.main.async {
+                                self?.complete(true)
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                self?.complete(false)
+                            }
                         }
                     } else {
                         DispatchQueue.main.async {
                             self?.complete(false)
                         }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.complete(false)
                     }
                 }
             }
@@ -321,7 +341,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             )
             output += "\(fingerName): \(extended ? "Extended" : "Not Extended"), "
         }
-        //print(output)
+        print(output)
     }
     
     private func isFingerExtended(fingerTip: VNRecognizedPoint?,
